@@ -9,14 +9,18 @@
     "still": "remotion still src/index.ts",
     "player": "vite --config player/vite.config.ts",
     "player:build": "vite build --config player/vite.config.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "images:gen": "node scripts/generate-images.mjs --slug=lehman",
+    "images:qa": "node scripts/qa-images.mjs --slug=lehman"
   },
   "dependencies": {
     "@remotion/cli": "4.0.543",
     "@remotion/player": "4.0.543",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "remotion": "4.0.543"
+    "remotion": "4.0.543",
+    "sharp": "^0.35.5",
+    "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",

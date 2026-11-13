@@ -1,0 +1,59 @@
+{
+  "slug": "lehman",
+  "title": "Que paso con Lehman Brothers",
+  "note": "Un prompt por plano. Sin texto: todo el texto lo dibuja Remotion.",
+  "shots": [
+    {
+      "frame": 1,
+      "prompt": "a tall old classical bank building with stone columns, leaning to one side with a long crack down the middle, small pieces of stone falling around it"
+    },
+    {
+      "frame": 2,
+      "prompt": "a round globe with simple buildings from different countries toppling over like dominoes, one large building falling across the globe"
+    },
+    {
+      "frame": 3,
+      "prompt": "a friendly adult kneeling next to a small child, the adult pointing at a completely blank empty chalkboard, both seen from the side, simple round heads and stick bodies"
+    },
+    {
+      "frame": 4,
+      "prompt": "two simple houses side by side, one person handing a small stack of coins to another person standing in front of one of the houses"
+    },
+    {
+      "frame": 5,
+      "prompt": "one person holding a big bunch of house keys, three simple houses lined up behind him getting smaller in the distance"
+    },
+    {
+      "frame": 6,
+      "prompt": "a simple house placed inside an open metal safe box, a hand pushing the safe door closed"
+    },
+    {
+      "frame": 7,
+      "prompt": "a big arrow curving upward, simple houses climbing along the arrow, three happy stick figures celebrating with raised arms"
+    },
+    {
+      "frame": 8,
+      "prompt": "a banker at a wooden desk packing stacks of paper into cardboard boxes tied with ribbon, more stacked boxes beside him, a rubber stamp in his hand, blank paper"
+    },
+    {
+      "frame": 9,
+      "prompt": "an arrow pointing sharply downward, a worried person with empty pockets turned inside out standing in front of a house with a cracked roof"
+    },
+    {
+      "frame": 10,
+      "prompt": "a cardboard box crumbling into dust and small crumbs, a few coins falling through a hole in the bottom of the box"
+    },
+    {
+      "frame": 11,
+      "prompt": "a tall nineteen twenties stone office building with rows of windows and a small entrance, seen from a low angle, empty street in front"
+    },
+    {
+      "frame": 12,
+      "prompt": "a giant blank paper receipt unrolling across a small globe, tiny worried people standing around it, no writing on the paper"
+    },
+    {
+      "frame": 13,
+      "prompt": "a person walking away with hands in his pockets, a small blank receipt sticking out of one pocket, simple city skyline behind"
+    }
+  ]
+}

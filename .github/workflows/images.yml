@@ -1,0 +1,65 @@
+name: images
+
+on:
+  workflow_dispatch:
+    inputs:
+      slug:
+        description: 'Slug del video (scripts/shots/<slug>.json)'
+        required: true
+        default: 'lehman'
+      only:
+        description: 'Planos concretos, separados por coma (vacio = todos)'
+        required: false
+        default: ''
+      force:
+        description: 'Regenerar aunque el prompt no haya cambiado'
+        type: boolean
+        default: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Cache de tesseract
+        uses: actions/cache@v4
+        with:
+          path: .cache/tesseract
+          key: tesseract-${{ runner.os }}-eng
+
+      - name: Generar imagenes
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          node scripts/generate-images.mjs \
+            --slug="${{ inputs.slug }}" \
+            --provider=cloudflare \
+            ${{ inputs.only != '' && format('--only={0}', inputs.only) || '' }} \
+            ${{ inputs.force && '--force' || '' }}
+
+      - name: Puerta de calidad (OCR y lienzo vacio)
+        if: always()
+        run: node scripts/qa-images.mjs --slug="${{ inputs.slug }}"
+
+      - name: Subir imagenes e informes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: images-${{ inputs.slug }}
+          path: |
+            public/${{ inputs.slug }}/ai/*.jpg
+            src/videos/${{ inputs.slug }}/seed-map.json
+            src/videos/${{ inputs.slug }}/images.json
+            qa/ocr-report.json
+          retention-days: 14
+          if-no-files-found: warn

@@ -1,0 +1,17 @@
+{
+  "styleId": "crayon-v1",
+  "size": 1024,
+  "palette": ["#F5EDE0", "#1F4D3A", "#E8B23A", "#C44536", "#12100E"],
+  "prefix": "flat hand-drawn crayon doodle illustration, straight-on front view, warm cream paper background, thick wobbly charcoal ink outlines, flat matte colours, limited palette of dark forest green, mustard yellow, brick red, cream and ink black, naive children's picture-book style, simple rounded shapes, minimal detail, visible paper grain, single centred subject, generous empty space around the subject",
+  "suffix": "no text, no letters, no words, no numbers, no signage, no logos, no watermark, no signature, no frame, no border, no sketchbook, no pencils, no table, no desk, no hand holding paper, not a photograph of paper, not photorealistic, not 3d render",
+  "providers": {
+    "cloudflare": {
+      "model": "@cf/black-forest-labs/flux-1-schnell",
+      "steps": 4
+    },
+    "pollinations": {
+      "model": "flux",
+      "nologo": true
+    }
+  }
+}

@@ -4,10 +4,17 @@ import {Karaoke} from '../../components/Karaoke';
 import {Paper} from '../../components/Paper';
 import {Scene} from '../../components/Scene';
 import {TopTitle} from '../../components/TopTitle';
+import imagesJson from './images.json';
 import timelineJson from './timeline.json';
 import type {Scene as SceneType, Timeline, Word} from './types';
 
 const timeline = timelineJson as unknown as Timeline;
+
+/**
+ * Mapa plano -> imagen generada. Lo escribe scripts/generate-images.mjs.
+ * Si un plano no esta generado todavia, cae al placeholder dibujado a mano.
+ */
+const generated = imagesJson as Record<string, string>;
 
 const TITLES: Record<number, string> = {
   1: '158 AÑOS',
@@ -49,7 +56,10 @@ export const Lehman: React.FC = () => {
         return (
           <Sequence key={scene.frame} from={from} durationInFrames={durationInFrames}>
             <Scene
-              src={`lehman/${String(scene.frame).padStart(2, '0')}.png`}
+              src={
+                generated[String(scene.frame)] ??
+                `lehman/${String(scene.frame).padStart(2, '0')}.png`
+              }
               index={index}
               durationInFrames={durationInFrames}
             />
