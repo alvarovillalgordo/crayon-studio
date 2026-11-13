@@ -1,5 +1,14 @@
 import React from 'react';
-import {AbsoluteFill, Img, interpolate, staticFile, useCurrentFrame} from 'remotion';
+import {
+  AbsoluteFill,
+  Img,
+  interpolate,
+  spring,
+  staticFile,
+  useCurrentFrame,
+  useVideoConfig,
+} from 'remotion';
+import {useBoil} from './useBoil';
 
 type Props = {
   src: string;
@@ -17,13 +26,23 @@ type Props = {
 export const Scene: React.FC<Props> = ({src, index, durationInFrames, background}) => {
   const frame = useCurrentFrame();
   const zoomIn = index % 2 === 0;
+  const {fps} = useVideoConfig();
+  const boil = useBoil();
+
+  // entrada: la imagen "aterriza" en 12 frames con un spring corto
+  const enter = spring({
+    frame,
+    fps,
+    durationInFrames: 12,
+    config: {damping: 16, mass: 0.6},
+  });
 
   const scale = interpolate(
     frame,
     [0, durationInFrames],
     zoomIn ? [1.0, 1.07] : [1.07, 1.0],
     {extrapolateRight: 'clamp'},
-  );
+  ) * (0.965 + 0.035 * enter);
 
   const drift = interpolate(
     frame,
@@ -46,7 +65,7 @@ export const Scene: React.FC<Props> = ({src, index, durationInFrames, background
         style={{
           width: '112%',
           objectFit: 'contain',
-          transform: `scale(${scale}) translateX(${drift}px)`,
+          transform: `scale(${scale}) translateX(${drift}px) rotate(${boil.rotate}deg) translate(${boil.x}px, ${boil.y}px)`,
         }}
       />
     </AbsoluteFill>

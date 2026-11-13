@@ -69,6 +69,11 @@ se generan una vez, se revisan y se versionan: el render de CI nunca vuelve a ll
 vacíos, texto legible (OCR con confianza ≥ 70 %) y marcas de agua. Escribe `qa/ocr-report.json`
 y sale con código 1 para cortar el workflow.
 
+**Límite conocido del OCR:** detecta texto tipográfico, pero no lettering dibujado a mano
+(inclinado, blanco sobre color, integrado en el dibujo). Un `BANK` pintado en una fachada pasó
+la puerta sin ser detectado. Por eso la revisión visual a tamaño completo sigue siendo
+obligatoria antes de dar un plano por bueno.
+
 En CI: workflow `images`, manual (`workflow_dispatch`). Necesita dos secretos:
 
 | Secreto | Valor |

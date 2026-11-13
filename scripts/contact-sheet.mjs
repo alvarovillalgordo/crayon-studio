@@ -23,10 +23,23 @@ const args = new Map(
 );
 const slug = args.get('slug') ?? 'lehman';
 
-const COLUMNS = 4;
-const TILE = 380;
+const COLUMNS = Number(args.get('cols') ?? 4);
+const TILE = Number(args.get('tile') ?? 380);
 const GAP = 12;
 const LABEL = 34;
+
+const only = args.has('frames')
+  ? new Set(
+      args
+        .get('frames')
+        .split(',')
+        .flatMap((part) => {
+          const [from, to] = part.split('-').map(Number);
+          if (!to) return [from];
+          return Array.from({length: to - from + 1}, (_, index) => from + index);
+        }),
+    )
+  : null;
 
 const exists = async (file) => {
   try {
@@ -48,7 +61,9 @@ const readJsonIfExists = async (file) => {
 const generated =
   (await readJsonIfExists(path.join(ROOT, `src/videos/${slug}/images.json`))) ?? {};
 
-const frames = Array.from({length: 13}, (_, index) => index + 1);
+const frames = Array.from({length: 13}, (_, index) => index + 1).filter(
+  (frame) => !only || only.has(frame),
+);
 
 const tiles = [];
 for (const frame of frames) {
@@ -100,7 +115,8 @@ for (const [index, tile] of tiles.entries()) {
 }
 
 await mkdir(path.join(ROOT, 'out'), {recursive: true});
-const output = path.join(ROOT, `out/sheet-${slug}.jpg`);
+const suffix = only ? `-${args.get('frames').replace(/[^0-9,-]/g, '')}` : '';
+const output = path.join(ROOT, `out/sheet-${slug}${suffix}.jpg`);
 
 await sharp({
   create: {
