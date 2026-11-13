@@ -32,6 +32,8 @@ npm run still -- Demo out/frame.png --frame=90
 npm run images:gen
 npm run images:qa
 npm run images:sheet      # hoja de contactos en out/sheet-<slug>.jpg
+# Revisión a tamaño completo, en tandas de cuatro:
+node scripts/contact-sheet.mjs --slug=lehman --frames=1-4 --cols=2 --tile=760
 ```
 
 ## Estructura
@@ -91,6 +93,19 @@ limitado a 1 imagen/45 s, 768 px y lleva marca de agua.
 
 Coste real: `flux-1-schnell` ≈ 57,6 neuronos por imagen 1024². Un vídeo de 13 planos ≈ 750,
 el 7,5 % del cupo diario gratuito.
+
+## Escena y sonido (Fase 3)
+
+- `Scene` aplica Ken Burns, line boil (10 Hz) y un spring de entrada. Los bordes superior e
+  inferior de la imagen se funden con el papel con una máscara de degradado asimétrica (14 % arriba,
+  6 % abajo): deja de verse el rectángulo sin recortar el dibujo.
+- `TopTitle` traza un subrayado de rotulador (`Marker`) y anima el número del gancho (`Counter`).
+- SFX sintetizados en `scripts/sfx.mjs` (ruido filtrado y envolventes, sin samples): `whoosh`,
+  `scribble`, `pop` y `thud`. Se disparan con `SfxLayer` en segundos absolutos.
+
+```bash
+node scripts/sfx.mjs   # regenera public/sfx/*.wav, determinista
+```
 
 ## CI
 
