@@ -149,6 +149,12 @@ node scripts/sfx.mjs   # regenera public/sfx/*.wav, determinista
 - **`render.yml`** — manual (`workflow_dispatch`) o al empujar un tag `v*`.
   Instala dependencias, cachea Chrome headless y sube el MP4 como artefacto (14 días).
 - **`pages.yml`** — publica el Player en GitHub Pages al hacer push a `main`.
+- **`validate.yml`** — en cada PR y push a `main`: tipos, datos y build del Player.
+
+El repositorio exige PR y el check `validate` para actualizar `main`. Las Actions externas están
+limitadas a una lista permitida y fijadas por SHA completo; los workflows solo reciben los
+permisos y secretos que necesitan. Dependabot y la detección/protección contra secretos están
+activados en GitHub.
 
 Para activar Pages: *Settings → Pages → Source: GitHub Actions*.
 
