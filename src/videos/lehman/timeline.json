@@ -1,0 +1,701 @@
+{
+  "voice": "es-ES-AlvaroNeural",
+  "gap": 0.32,
+  "lines": [
+    {
+      "index": 1,
+      "text": "En 2008, un banco de 158 años quebró en un fin de semana. Y se llevó medio mundo por delante.",
+      "start": 0.0,
+      "end": 8.568,
+      "duration": 8.568,
+      "words": [
+        {
+          "text": "En",
+          "start": 0.101,
+          "end": 0.309
+        },
+        {
+          "text": "2008",
+          "start": 0.322,
+          "end": 1.0
+        },
+        {
+          "text": "un",
+          "start": 1.234,
+          "end": 1.325
+        },
+        {
+          "text": "banco",
+          "start": 1.338,
+          "end": 1.651
+        },
+        {
+          "text": "de",
+          "start": 1.664,
+          "end": 1.781
+        },
+        {
+          "text": "158 años",
+          "start": 1.794,
+          "end": 3.2
+        },
+        {
+          "text": "quebró",
+          "start": 3.213,
+          "end": 3.526
+        },
+        {
+          "text": "en",
+          "start": 3.539,
+          "end": 3.63
+        },
+        {
+          "text": "un",
+          "start": 3.643,
+          "end": 3.773
+        },
+        {
+          "text": "fin",
+          "start": 3.786,
+          "end": 3.981
+        },
+        {
+          "text": "de",
+          "start": 3.994,
+          "end": 4.085
+        },
+        {
+          "text": "semana",
+          "start": 4.098,
+          "end": 4.697
+        },
+        {
+          "text": "Y",
+          "start": 5.598,
+          "end": 5.78
+        },
+        {
+          "text": "se",
+          "start": 5.793,
+          "end": 5.923
+        },
+        {
+          "text": "llevó",
+          "start": 5.936,
+          "end": 6.197
+        },
+        {
+          "text": "medio",
+          "start": 6.21,
+          "end": 6.522
+        },
+        {
+          "text": "mundo",
+          "start": 6.535,
+          "end": 6.822
+        },
+        {
+          "text": "por",
+          "start": 6.835,
+          "end": 7.004
+        },
+        {
+          "text": "delante",
+          "start": 7.017,
+          "end": 7.655
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "text": "Te lo explico como si tuvieras 5 años.",
+      "start": 8.888,
+      "end": 12.44,
+      "duration": 3.552,
+      "words": [
+        {
+          "text": "Te",
+          "start": 8.988,
+          "end": 9.157
+        },
+        {
+          "text": "lo",
+          "start": 9.17,
+          "end": 9.261
+        },
+        {
+          "text": "explico",
+          "start": 9.274,
+          "end": 9.743
+        },
+        {
+          "text": "como",
+          "start": 9.756,
+          "end": 9.991
+        },
+        {
+          "text": "si",
+          "start": 10.004,
+          "end": 10.134
+        },
+        {
+          "text": "tuvieras",
+          "start": 10.147,
+          "end": 10.603
+        },
+        {
+          "text": "5 años",
+          "start": 10.616,
+          "end": 11.527
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "text": "Imagina que tu vecino te pide dinero para comprar una casa.",
+      "start": 12.76,
+      "end": 17.056,
+      "duration": 4.296,
+      "words": [
+        {
+          "text": "Imagina",
+          "start": 12.861,
+          "end": 13.421
+        },
+        {
+          "text": "que",
+          "start": 13.434,
+          "end": 13.564
+        },
+        {
+          "text": "tu",
+          "start": 13.577,
+          "end": 13.668
+        },
+        {
+          "text": "vecino",
+          "start": 13.681,
+          "end": 14.085
+        },
+        {
+          "text": "te",
+          "start": 14.098,
+          "end": 14.215
+        },
+        {
+          "text": "pide",
+          "start": 14.228,
+          "end": 14.463
+        },
+        {
+          "text": "dinero",
+          "start": 14.476,
+          "end": 14.84
+        },
+        {
+          "text": "para",
+          "start": 14.853,
+          "end": 15.049
+        },
+        {
+          "text": "comprar",
+          "start": 15.062,
+          "end": 15.439
+        },
+        {
+          "text": "una",
+          "start": 15.452,
+          "end": 15.608
+        },
+        {
+          "text": "casa",
+          "start": 15.621,
+          "end": 16.142
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "text": "Y otra. Y otra.",
+      "start": 17.376,
+      "end": 20.424,
+      "duration": 3.048,
+      "words": [
+        {
+          "text": "Y",
+          "start": 17.476,
+          "end": 17.697
+        },
+        {
+          "text": "otra",
+          "start": 17.71,
+          "end": 18.049
+        },
+        {
+          "text": "Y",
+          "start": 18.949,
+          "end": 19.171
+        },
+        {
+          "text": "otra",
+          "start": 19.184,
+          "end": 19.522
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "text": "Y para pedir más, usa las casas como aval.",
+      "start": 20.744,
+      "end": 24.44,
+      "duration": 3.696,
+      "words": [
+        {
+          "text": "Y",
+          "start": 20.845,
+          "end": 21.014
+        },
+        {
+          "text": "para",
+          "start": 21.027,
+          "end": 21.236
+        },
+        {
+          "text": "pedir",
+          "start": 21.249,
+          "end": 21.561
+        },
+        {
+          "text": "más",
+          "start": 21.574,
+          "end": 21.874
+        },
+        {
+          "text": "usa",
+          "start": 22.121,
+          "end": 22.29
+        },
+        {
+          "text": "las",
+          "start": 22.303,
+          "end": 22.473
+        },
+        {
+          "text": "casas",
+          "start": 22.486,
+          "end": 22.798
+        },
+        {
+          "text": "como",
+          "start": 22.811,
+          "end": 23.02
+        },
+        {
+          "text": "aval",
+          "start": 23.033,
+          "end": 23.527
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "text": "Mientras el precio sube, todos ganan.",
+      "start": 24.76,
+      "end": 28.288,
+      "duration": 3.528,
+      "words": [
+        {
+          "text": "Mientras",
+          "start": 24.86,
+          "end": 25.355
+        },
+        {
+          "text": "el",
+          "start": 25.368,
+          "end": 25.472
+        },
+        {
+          "text": "precio",
+          "start": 25.485,
+          "end": 25.837
+        },
+        {
+          "text": "sube",
+          "start": 25.85,
+          "end": 26.227
+        },
+        {
+          "text": "todos",
+          "start": 26.54,
+          "end": 26.826
+        },
+        {
+          "text": "ganan",
+          "start": 26.839,
+          "end": 27.373
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "text": "El banco convierte esas deudas en paquetes y los vende como si fueran seguros.",
+      "start": 28.608,
+      "end": 33.912,
+      "duration": 5.304,
+      "words": [
+        {
+          "text": "El",
+          "start": 28.709,
+          "end": 28.93
+        },
+        {
+          "text": "banco",
+          "start": 28.943,
+          "end": 29.23
+        },
+        {
+          "text": "convierte",
+          "start": 29.243,
+          "end": 29.764
+        },
+        {
+          "text": "esas",
+          "start": 29.777,
+          "end": 30.037
+        },
+        {
+          "text": "deudas",
+          "start": 30.05,
+          "end": 30.428
+        },
+        {
+          "text": "en",
+          "start": 30.441,
+          "end": 30.545
+        },
+        {
+          "text": "paquetes",
+          "start": 30.558,
+          "end": 31.079
+        },
+        {
+          "text": "y",
+          "start": 31.092,
+          "end": 31.131
+        },
+        {
+          "text": "los",
+          "start": 31.144,
+          "end": 31.313
+        },
+        {
+          "text": "vende",
+          "start": 31.326,
+          "end": 31.6
+        },
+        {
+          "text": "como",
+          "start": 31.613,
+          "end": 31.847
+        },
+        {
+          "text": "si",
+          "start": 31.86,
+          "end": 32.016
+        },
+        {
+          "text": "fueran",
+          "start": 32.029,
+          "end": 32.316
+        },
+        {
+          "text": "seguros",
+          "start": 32.329,
+          "end": 33.006
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "text": "Hasta que los precios bajan. El vecino no paga. Y los paquetes valen cero.",
+      "start": 34.232,
+      "end": 41.696,
+      "duration": 7.464,
+      "words": [
+        {
+          "text": "Hasta",
+          "start": 34.333,
+          "end": 34.685
+        },
+        {
+          "text": "que",
+          "start": 34.698,
+          "end": 34.802
+        },
+        {
+          "text": "los",
+          "start": 34.815,
+          "end": 34.984
+        },
+        {
+          "text": "precios",
+          "start": 34.997,
+          "end": 35.362
+        },
+        {
+          "text": "bajan",
+          "start": 35.375,
+          "end": 35.987
+        },
+        {
+          "text": "El",
+          "start": 36.887,
+          "end": 37.109
+        },
+        {
+          "text": "vecino",
+          "start": 37.122,
+          "end": 37.512
+        },
+        {
+          "text": "no",
+          "start": 37.525,
+          "end": 37.682
+        },
+        {
+          "text": "paga",
+          "start": 37.695,
+          "end": 38.215
+        },
+        {
+          "text": "Y",
+          "start": 39.114,
+          "end": 39.27
+        },
+        {
+          "text": "los",
+          "start": 39.283,
+          "end": 39.465
+        },
+        {
+          "text": "paquetes",
+          "start": 39.478,
+          "end": 39.947
+        },
+        {
+          "text": "valen",
+          "start": 39.96,
+          "end": 40.247
+        },
+        {
+          "text": "cero",
+          "start": 40.26,
+          "end": 40.781
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "text": "Ese banco era Lehman Brothers. El lunes, el mundo entero pagó la factura.",
+      "start": 42.016,
+      "end": 48.496,
+      "duration": 6.48,
+      "words": [
+        {
+          "text": "Ese",
+          "start": 42.117,
+          "end": 42.456
+        },
+        {
+          "text": "banco",
+          "start": 42.469,
+          "end": 42.885
+        },
+        {
+          "text": "era",
+          "start": 42.898,
+          "end": 43.029
+        },
+        {
+          "text": "Lehman",
+          "start": 43.042,
+          "end": 43.341
+        },
+        {
+          "text": "Brothers",
+          "start": 43.354,
+          "end": 44.044
+        },
+        {
+          "text": "El",
+          "start": 44.945,
+          "end": 45.166
+        },
+        {
+          "text": "lunes",
+          "start": 45.179,
+          "end": 45.622
+        },
+        {
+          "text": "el",
+          "start": 45.817,
+          "end": 45.934
+        },
+        {
+          "text": "mundo",
+          "start": 45.947,
+          "end": 46.208
+        },
+        {
+          "text": "entero",
+          "start": 46.221,
+          "end": 46.572
+        },
+        {
+          "text": "pagó",
+          "start": 46.585,
+          "end": 46.833
+        },
+        {
+          "text": "la",
+          "start": 46.846,
+          "end": 46.937
+        },
+        {
+          "text": "factura",
+          "start": 46.95,
+          "end": 47.575
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "text": "Y tú, sin saberlo, también.",
+      "start": 48.816,
+      "end": 52.056,
+      "duration": 3.24,
+      "words": [
+        {
+          "text": "Y",
+          "start": 48.917,
+          "end": 49.086
+        },
+        {
+          "text": "tú",
+          "start": 49.099,
+          "end": 49.334
+        },
+        {
+          "text": "sin",
+          "start": 49.633,
+          "end": 49.842
+        },
+        {
+          "text": "saberlo",
+          "start": 49.855,
+          "end": 50.349
+        },
+        {
+          "text": "también",
+          "start": 50.571,
+          "end": 51.144
+        }
+      ]
+    }
+  ],
+  "total": 52.056,
+  "video_duration": 52.806,
+  "scenes": [
+    {
+      "frame": 1,
+      "start": 0.0,
+      "end": 5.598,
+      "text": "En 2008, un banco de 158 años quebró en un fin de semana.",
+      "duration": 5.598
+    },
+    {
+      "frame": 2,
+      "start": 5.598,
+      "end": 8.888,
+      "text": "Y se llevó medio mundo por delante.",
+      "duration": 3.29
+    },
+    {
+      "frame": 3,
+      "start": 8.888,
+      "end": 12.76,
+      "text": "Te lo explico como si tuvieras 5 años.",
+      "duration": 3.872
+    },
+    {
+      "frame": 4,
+      "start": 12.76,
+      "end": 17.376,
+      "text": "Imagina que tu vecino te pide dinero para comprar una casa.",
+      "duration": 4.616
+    },
+    {
+      "frame": 5,
+      "start": 17.376,
+      "end": 20.744,
+      "text": "Y otra. Y otra.",
+      "duration": 3.368
+    },
+    {
+      "frame": 6,
+      "start": 20.744,
+      "end": 24.76,
+      "text": "Y para pedir más, usa las casas como aval.",
+      "duration": 4.016
+    },
+    {
+      "frame": 7,
+      "start": 24.76,
+      "end": 28.608,
+      "text": "Mientras el precio sube, todos ganan.",
+      "duration": 3.848
+    },
+    {
+      "frame": 8,
+      "start": 28.608,
+      "end": 34.232,
+      "text": "El banco convierte esas deudas en paquetes y los vende como si fueran seguros.",
+      "duration": 5.624
+    },
+    {
+      "frame": 9,
+      "start": 34.232,
+      "end": 39.114,
+      "text": "Hasta que los precios bajan. El vecino no paga.",
+      "duration": 4.882
+    },
+    {
+      "frame": 10,
+      "start": 39.114,
+      "end": 42.016,
+      "text": "Y los paquetes valen cero.",
+      "duration": 2.902
+    },
+    {
+      "frame": 11,
+      "start": 42.016,
+      "end": 44.945,
+      "text": "Ese banco era Lehman Brothers.",
+      "duration": 2.929
+    },
+    {
+      "frame": 12,
+      "start": 44.945,
+      "end": 48.816,
+      "text": "El lunes, el mundo entero pagó la factura.",
+      "duration": 3.871
+    },
+    {
+      "frame": 13,
+      "start": 48.816,
+      "end": 52.806,
+      "text": "Y tú, sin saberlo, también.",
+      "duration": 3.99
+    }
+  ]
+}
