@@ -16,14 +16,19 @@ on:
         type: boolean
         default: false
 
+permissions:
+  contents: read
+
 jobs:
   generate:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 22
           cache: npm
@@ -31,35 +36,56 @@ jobs:
       - run: npm ci
 
       - name: Cache de tesseract
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: .cache/tesseract
           key: tesseract-${{ runner.os }}-eng
 
-      - name: Generar imagenes
+      - name: Validar inputs
+        id: validate_inputs
         env:
+          INPUT_SLUG: ${{ inputs.slug }}
+          INPUT_ONLY: ${{ inputs.only }}
+        run: |
+          if [[ ! "$INPUT_SLUG" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
+            echo "::error::Slug invalido."
+            exit 1
+          fi
+          if [[ -n "$INPUT_ONLY" && ! "$INPUT_ONLY" =~ ^[1-9][0-9]*(,[1-9][0-9]*)*$ ]]; then
+            echo "::error::'only' debe ser una lista de numeros de plano separados por comas."
+            exit 1
+          fi
+          printf 'slug=%s\n' "$INPUT_SLUG" >> "$GITHUB_OUTPUT"
+
+      - name: Generar imagenes
+        if: steps.validate_inputs.outcome == 'success'
+        env:
+          INPUT_SLUG: ${{ inputs.slug }}
+          INPUT_ONLY: ${{ inputs.only }}
+          INPUT_FORCE: ${{ inputs.force }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          node scripts/generate-images.mjs \
-            --slug="${{ inputs.slug }}" \
-            --provider=cloudflare \
-            ${{ inputs.only != '' && format('--only={0}', inputs.only) || '' }} \
-            ${{ inputs.force && '--force' || '' }}
+          args=(--slug="$INPUT_SLUG" --provider=cloudflare)
+          [[ -z "$INPUT_ONLY" ]] || args+=(--only="$INPUT_ONLY")
+          [[ "$INPUT_FORCE" != true ]] || args+=(--force)
+          node scripts/generate-images.mjs "${args[@]}"
 
       - name: Puerta de calidad (OCR y lienzo vacio)
-        if: always()
-        run: node scripts/qa-images.mjs --slug="${{ inputs.slug }}"
+        if: always() && steps.validate_inputs.outcome == 'success'
+        env:
+          INPUT_SLUG: ${{ inputs.slug }}
+        run: node scripts/qa-images.mjs --slug="$INPUT_SLUG"
 
       - name: Subir imagenes e informes
-        if: always()
-        uses: actions/upload-artifact@v4
+        if: always() && steps.validate_inputs.outcome == 'success'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: images-${{ inputs.slug }}
+          name: images-${{ steps.validate_inputs.outputs.slug }}
           path: |
-            public/${{ inputs.slug }}/ai/*.jpg
-            src/videos/${{ inputs.slug }}/seed-map.json
-            src/videos/${{ inputs.slug }}/images.json
-            qa/${{ inputs.slug }}/ocr-report.json
+            public/${{ steps.validate_inputs.outputs.slug }}/ai/*.jpg
+            src/videos/${{ steps.validate_inputs.outputs.slug }}/seed-map.json
+            src/videos/${{ steps.validate_inputs.outputs.slug }}/images.json
+            qa/${{ steps.validate_inputs.outputs.slug }}/ocr-report.json
           retention-days: 14
           if-no-files-found: warn

@@ -20,6 +20,7 @@ Todo es local y gratuito: no hay claves ni cuotas.
 import argparse
 import asyncio
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -102,6 +103,8 @@ def main():
     parser.add_argument("--tail", type=float, default=0.75)
     parser.add_argument("--keep-raw", action="store_true", help="no procesa la voz")
     args = parser.parse_args()
+    if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", args.slug):
+        parser.error("--slug solo puede contener letras minusculas, numeros y guiones")
 
     work = ROOT / ".cache" / f"voice-{args.slug}"
     work.mkdir(parents=True, exist_ok=True)

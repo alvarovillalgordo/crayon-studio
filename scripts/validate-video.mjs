@@ -267,6 +267,10 @@ const slugs = args.has('slug')
 
 const found = [];
 for (const slug of slugs) {
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+    error(slug, 'slug invalido: usa solo letras minusculas, numeros y guiones');
+    continue;
+  }
   if (!(await exists(path.join(VIDEOS_DIR, slug, 'timeline.json')))) {
     warn(slug, 'sin timeline.json, se omite');
     continue;

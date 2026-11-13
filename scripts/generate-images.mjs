@@ -35,6 +35,9 @@ const args = new Map(
 );
 
 const slug = args.get('slug') ?? 'lehman';
+if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+  throw new Error('Slug invalido: usa solo letras minusculas, numeros y guiones.');
+}
 const providerArg = args.get('provider') ?? 'auto';
 const force = args.get('force') === 'true';
 const only = args.has('only')

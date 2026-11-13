@@ -22,6 +22,9 @@ const args = new Map(
   }),
 );
 const slug = args.get('slug') ?? 'lehman';
+if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) {
+  throw new Error('Slug invalido: usa solo letras minusculas, numeros y guiones.');
+}
 
 const COLUMNS = Number(args.get('cols') ?? 4);
 const TILE = Number(args.get('tile') ?? 380);
