@@ -1,0 +1,52 @@
+name: render
+
+on:
+  workflow_dispatch:
+    inputs:
+      composition:
+        description: 'ID de la composicion'
+        required: true
+        default: 'Demo'
+      output:
+        description: 'Nombre del archivo'
+        required: true
+        default: 'demo.mp4'
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Cache browser y bundle
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules/.remotion
+            node_modules/.cache
+          key: remotion-${{ runner.os }}-4.0.543
+
+      - run: npx remotion browser ensure
+
+      - name: Render
+        run: >
+          npx remotion render src/index.ts
+          ${{ github.event.inputs.composition || 'Demo' }}
+          out/${{ github.event.inputs.output || 'demo.mp4' }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.event.inputs.output || 'demo.mp4' }}
+          path: out/*.mp4
+          retention-days: 14
