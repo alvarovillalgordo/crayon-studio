@@ -57,11 +57,11 @@ const wordsForScene = (scene: SceneType): Word[] =>
  */
 const cues: Cue[] = timeline.scenes.flatMap((scene, index) => {
   const sceneCues: Cue[] = [
-    {from: scene.start + 0.02, sound: 'whoosh', volume: 0.12},
-    {from: scene.start + 0.28, sound: 'scribble', volume: 0.1},
+    {from: scene.start + 0.02, sound: 'whoosh', volume: 0.24},
+    {from: scene.start + 0.28, sound: 'scribble', volume: 0.28},
   ];
   if (index === timeline.scenes.length - 1) {
-    sceneCues.push({from: scene.start + 0.6, sound: 'thud', volume: 0.18});
+    sceneCues.push({from: scene.start + 0.6, sound: 'thud', volume: 0.4});
   }
   return sceneCues;
 });

@@ -4,13 +4,13 @@
   "size": 1024,
   "provider": "cloudflare",
   "model": "@cf/black-forest-labs/flux-1-schnell",
-  "updatedAt": "2026-11-13T11:08:51.925Z",
+  "updatedAt": "2026-11-13T11:21:32.896Z",
   "shots": {
     "1": {
       "seed": 1312460160,
       "seedApplied": false,
-      "prompt": "flat hand-drawn crayon doodle illustration, straight-on front view, warm cream paper background, thick wobbly charcoal ink outlines, flat matte colours, limited palette of dark forest green, mustard yellow, brick red, cream and ink black, naive children's picture-book style, simple rounded shapes, minimal detail, visible paper grain, single centred subject, generous empty space around the subject. a tall old classical bank building with stone columns, leaning to one side with a long crack down the middle, small pieces of stone falling around it. no text, no letters, no words, no numbers, no signage, no logos, no watermark, no signature, no frame, no border, no sketchbook, no pencils, no table, no desk, no hand holding paper, not a photograph of paper, not photorealistic, not 3d render",
-      "promptHash": "6ec118633feafd950ab760b5540276a4db4e402f01fa83d091132490b5b0e6ac",
+      "prompt": "flat hand-drawn crayon doodle illustration, straight-on front view, warm cream paper background, thick wobbly charcoal ink outlines, flat matte colours, limited palette of dark forest green, mustard yellow, brick red, cream and ink black, naive children's picture-book style, simple rounded shapes, minimal detail, visible paper grain, single centred subject, generous empty space around the subject. a tall old classical bank building with stone columns, leaning to one side with a long crack down the middle, completely blank facade without any sign or lettering, small pieces of stone falling around it. no text, no letters, no words, no numbers, no signage, no logos, no watermark, no signature, no frame, no border, no sketchbook, no pencils, no table, no desk, no hand holding paper, not a photograph of paper, not photorealistic, not 3d render",
+      "promptHash": "fd0440733e23a32013086b550f39200956b27d3fed7644f10114214f53b4fdb5",
       "file": "public/lehman/ai/01.jpg",
       "provider": "cloudflare",
       "model": "@cf/black-forest-labs/flux-1-schnell",
@@ -18,9 +18,9 @@
       "height": 1024,
       "sourceWidth": 1024,
       "sourceHeight": 1024,
-      "bytes": 201370,
-      "generatedAt": "2026-11-13T11:04:03.525Z",
-      "bg": "#fffcdd"
+      "bytes": 132464,
+      "bg": "#fefdf8",
+      "generatedAt": "2026-11-13T11:21:32.895Z"
     },
     "2": {
       "seed": 1748655194,
