@@ -34,6 +34,9 @@ npm run images:qa
 npm run images:sheet      # hoja de contactos en out/sheet-<slug>.jpg
 # Revisión a tamaño completo, en tandas de cuatro:
 node scripts/contact-sheet.mjs --slug=lehman --frames=1-4 --cols=2 --tile=760
+
+# Crear esqueleto para un video nuevo
+npm run new-video -- --slug=crisis-2008 --title="La crisis de 2008" --frames=10
 ```
 
 ## Estructura
@@ -53,6 +56,40 @@ public/
 scripts/               TTS, generación de imágenes, QA
 .github/workflows/     render.yml y pages.yml
 ```
+
+## Crear un video nuevo
+
+1. `npm run new-video -- --slug=<slug> --title="..." --frames=<N>` crea el guion vacío,
+   los prompts, `meta.json` e `images.json`.
+2. Escribe **una frase por plano** en `scripts/narration/<slug>.txt` y prepara un prompt por plano
+   en `scripts/shots/<slug>.json`. Las imágenes generadas no deben contener texto.
+3. Instala la dependencia local de voz una vez (`python3 -m pip install -r scripts/requirements.txt`)
+   y ejecuta `npm run voice -- --slug=<slug>`. Requiere `ffmpeg` y `ffprobe`; produce la voz y
+   `timeline.json` con tiempos por palabra.
+4. Genera y revisa imágenes con
+   `npm run images:gen -- --slug=<slug> --provider=cloudflare` y
+   `npm run images:qa -- --slug=<slug>`. En GitHub Actions el workflow `images` acepta el slug.
+5. Añade el video a `src/videos/registry.tsx` con `defineVideo(meta, timeline, images)`:
+
+   ```tsx
+   import crisisMeta from './crisis-2008/meta.json';
+   import crisisImages from './crisis-2008/images.json';
+   import crisisTimeline from './crisis-2008/timeline.json';
+
+   // En VIDEOS:
+   defineVideo(
+     crisisMeta as VideoMeta,
+     crisisTimeline as unknown as Timeline,
+     crisisImages as Record<string, string>,
+   ),
+   ```
+
+6. `npm run typecheck` y `npm run validate` comprueban datos, continuidad de planos, imágenes,
+   voz y SFX. El workflow `render` ejecuta ambas puertas antes de empezar a renderizar.
+
+La composición y el Player son genéricos (`src/videos/Video.tsx`): no hace falta escribir un
+componente React por cada nuevo video. `scripts/validate-video.mjs` también rechaza prompts vacíos
+antes del render; el generador de imágenes los rechaza antes de llamar al proveedor.
 
 ## Imágenes IA (Fase 2)
 

@@ -60,6 +60,6 @@ jobs:
             public/${{ inputs.slug }}/ai/*.jpg
             src/videos/${{ inputs.slug }}/seed-map.json
             src/videos/${{ inputs.slug }}/images.json
-            qa/ocr-report.json
+            qa/${{ inputs.slug }}/ocr-report.json
           retention-days: 14
           if-no-files-found: warn

@@ -1,0 +1,20 @@
+{
+  "id": "Lehman",
+  "slug": "lehman",
+  "title": "Qué pasó con Lehman Brothers",
+  "titles": {
+    "1": {"text": "158 AÑOS", "count": 158, "countSuffix": " AÑOS"},
+    "2": {"text": "MEDIO MUNDO"},
+    "3": {"text": "FÁCIL"},
+    "4": {"text": "UNA CASA"},
+    "5": {"text": "Y OTRA. Y OTRA."},
+    "6": {"text": "AVALAR"},
+    "7": {"text": "TODOS GANAN"},
+    "8": {"text": "PAQUETES \"SEGUROS\""},
+    "9": {"text": "LOS PRECIOS BAJAN"},
+    "10": {"text": "NADIE PAGA"},
+    "11": {"text": "LEHMAN BROTHERS"},
+    "12": {"text": "EL LUNES"},
+    "13": {"text": "Y TÚ TAMBIÉN"}
+  }
+}

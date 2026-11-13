@@ -10,9 +10,13 @@
     "player": "vite --config player/vite.config.ts",
     "player:build": "vite build --config player/vite.config.ts",
     "typecheck": "tsc --noEmit",
-    "images:gen": "node scripts/generate-images.mjs --slug=lehman",
-    "images:qa": "node scripts/qa-images.mjs --slug=lehman",
-    "images:sheet": "node scripts/contact-sheet.mjs --slug=lehman"
+    "images:gen": "node scripts/generate-images.mjs",
+    "images:qa": "node scripts/qa-images.mjs",
+    "images:sheet": "node scripts/contact-sheet.mjs",
+    "validate": "node scripts/validate-video.mjs",
+    "voice": "python3 scripts/voice.py",
+    "new-video": "node scripts/new-video.mjs",
+    "sfx": "node scripts/sfx.mjs"
   },
   "dependencies": {
     "@remotion/cli": "4.0.543",

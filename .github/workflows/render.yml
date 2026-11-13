@@ -29,6 +29,11 @@ jobs:
 
       - run: npm ci
 
+      - name: Comprobaciones (QA y tipos)
+        run: |
+          npm run typecheck
+          npm run validate
+
       - name: Cache browser y bundle
         uses: actions/cache@v4
         with:

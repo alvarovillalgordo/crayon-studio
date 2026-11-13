@@ -38,7 +38,7 @@ const MIN_WORD_LENGTH = 3;
 const seedMapPath = args.has('seed-map')
   ? path.resolve(args.get('seed-map'))
   : path.join(ROOT, `src/videos/${slug}/seed-map.json`);
-const reportDir = path.join(ROOT, 'qa');
+const reportDir = path.join(ROOT, 'qa', slug);
 const reportPath = path.join(reportDir, 'ocr-report.json');
 
 const exists = async (file) => {
@@ -187,7 +187,7 @@ const report = {
 await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`);
 
 console.log(
-  `\n${results.length - failures}/${results.length} planos limpios. Informe: qa/ocr-report.json`,
+  `\n${results.length - failures}/${results.length} planos limpios. Informe: ${path.relative(ROOT, reportPath)}`,
 );
 
 if (failures > 0) {

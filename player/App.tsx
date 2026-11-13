@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Player} from '@remotion/player';
 import {Demo} from '../src/videos/demo/Demo';
-import {Lehman, lehmanDurationInFrames} from '../src/videos/lehman/Lehman';
+import {VIDEOS} from '../src/videos/registry';
 import '../src/fonts';
 
 type Entry = {
@@ -13,13 +13,13 @@ type Entry = {
 };
 
 const ENTRIES: Entry[] = [
-  {
-    id: 'Lehman',
-    label: 'Lehman v1',
-    component: Lehman,
-    durationInFrames: lehmanDurationInFrames,
-    fps: 30,
-  },
+  ...VIDEOS.map((entry) => ({
+    id: entry.id,
+    label: entry.label,
+    component: entry.component,
+    durationInFrames: entry.durationInFrames,
+    fps: entry.fps,
+  })),
   {
     id: 'Demo',
     label: 'Demo',

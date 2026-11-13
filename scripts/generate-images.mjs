@@ -43,6 +43,23 @@ const only = args.has('only')
 
 const style = await readJson(path.join(ROOT, 'scripts/style.json'));
 const storyboard = await readJson(path.join(ROOT, `scripts/shots/${slug}.json`));
+const storyboardShots = storyboard.shots ?? [];
+
+if (storyboardShots.length === 0) {
+  throw new Error(`scripts/shots/${slug}.json no contiene planos.`);
+}
+storyboardShots.forEach((shot, index) => {
+  if (shot.frame !== index + 1) {
+    throw new Error(
+      `scripts/shots/${slug}.json: se esperaba frame ${index + 1}, se encontro ${shot.frame}.`,
+    );
+  }
+  if (!shot.prompt?.trim()) {
+    throw new Error(
+      `scripts/shots/${slug}.json: falta el prompt del plano ${shot.frame}; no se llama al proveedor.`,
+    );
+  }
+});
 
 const outDir = path.join(ROOT, `public/${slug}/ai`);
 const seedMapPath = path.join(ROOT, `src/videos/${slug}/seed-map.json`);

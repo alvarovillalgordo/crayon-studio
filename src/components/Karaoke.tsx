@@ -1,7 +1,7 @@
 import React from 'react';
 import {interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 import {fonts, palette, safe} from '../theme';
-import type {Word} from '../videos/lehman/types';
+import type {Word} from '../videos/types';
 
 type Props = {
   words: Word[];
