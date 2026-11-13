@@ -1,13 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Player} from '@remotion/player';
 import {Demo} from '../src/videos/demo/Demo';
+import {Lehman, lehmanDurationInFrames} from '../src/videos/lehman/Lehman';
 import '../src/fonts';
 
+type Entry = {
+  id: string;
+  label: string;
+  component: React.ComponentType;
+  durationInFrames: number;
+  fps: number;
+};
+
+const ENTRIES: Entry[] = [
+  {
+    id: 'Lehman',
+    label: 'Lehman v1',
+    component: Lehman,
+    durationInFrames: lehmanDurationInFrames,
+    fps: 30,
+  },
+  {
+    id: 'Demo',
+    label: 'Demo',
+    component: Demo,
+    durationInFrames: 180,
+    fps: 30,
+  },
+];
+
 /**
- * Preview web de la composicion (GitHub Pages).
+ * Preview web de las composiciones (GitHub Pages).
  * Permite revisar en el movil sin renderizar nada en local.
  */
 export const App: React.FC = () => {
+  const [activeId, setActiveId] = useState(ENTRIES[0].id);
+  const active = ENTRIES.find((entry) => entry.id === activeId) ?? ENTRIES[0];
+
   return (
     <div
       style={{
@@ -24,18 +53,40 @@ export const App: React.FC = () => {
         fontFamily: 'system-ui, sans-serif',
       }}
     >
-      <div style={{color: '#F5EDE0', fontSize: 14, letterSpacing: 3}}>CRAYON STUDIO · PREVIEW</div>
+      <div style={{color: '#F5EDE0', fontSize: 13, letterSpacing: 3}}>CRAYON STUDIO · PREVIEW</div>
+
+      <div style={{display: 'flex', gap: 8}}>
+        {ENTRIES.map((entry) => (
+          <button
+            key={entry.id}
+            onClick={() => setActiveId(entry.id)}
+            style={{
+              padding: '8px 16px',
+              borderRadius: 999,
+              border: '1px solid #E8B23A',
+              background: entry.id === active.id ? '#E8B23A' : 'transparent',
+              color: entry.id === active.id ? '#12100E' : '#E8B23A',
+              fontSize: 13,
+              letterSpacing: 1,
+              cursor: 'pointer',
+            }}
+          >
+            {entry.label}
+          </button>
+        ))}
+      </div>
+
       <div style={{width: '100%', maxWidth: 420}}>
         <Player
-          component={Demo}
-          durationInFrames={180}
-          fps={30}
+          key={active.id}
+          component={active.component}
+          durationInFrames={active.durationInFrames}
+          fps={active.fps}
           compositionWidth={1080}
           compositionHeight={1920}
           style={{width: '100%', borderRadius: 12, overflow: 'hidden'}}
           controls
           loop
-          autoPlay
         />
       </div>
     </div>
