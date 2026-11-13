@@ -7,7 +7,10 @@
   "providers": {
     "cloudflare": {
       "model": "@cf/black-forest-labs/flux-1-schnell",
-      "steps": 4
+      "steps": 4,
+      "supportsSeed": false,
+      "supportsSize": false,
+      "note": "El esquema REST solo admite prompt y steps (additionalProperties: false). La salida es 1024x1024."
     },
     "pollinations": {
       "model": "flux",

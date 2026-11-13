@@ -52,6 +52,12 @@ const exists = async (file) => {
 
 const seedMap = await readJson(seedMapPath);
 
+if (Object.keys(seedMap.shots ?? {}).length === 0) {
+  console.error(`No hay imagenes que revisar en ${path.relative(ROOT, seedMapPath)}.`);
+  console.error('La generacion no produjo ningun plano: la puerta falla en vez de aprobar el vacio.');
+  process.exit(1);
+}
+
 /** OCR sobre una version en gris y normalizada: detecta mejor el texto suelto. */
 const ocrBuffer = async (file) =>
   sharp(file)

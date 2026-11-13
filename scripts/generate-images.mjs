@@ -91,21 +91,25 @@ console.log(`Proveedor: ${provider.name}`);
 /* ---------------------------------------------------------------- cloudflare */
 
 const generateCloudflare = async (prompt, seed) => {
-  const {model, steps} = style.providers.cloudflare;
+  const {model, steps, supportsSeed, supportsSize} = style.providers.cloudflare;
   const url = `https://api.cloudflare.com/client/v4/accounts/${provider.account}/ai/run/${model}`;
+
+  // El esquema de flux-1-schnell rechaza cualquier propiedad extra:
+  // solo se envian prompt y steps, y la imagen sale a 1024x1024.
+  const body = {prompt, steps};
+  if (supportsSeed) body.seed = seed;
+  if (supportsSize) {
+    body.width = style.size;
+    body.height = style.size;
+  }
+
   const response = await fetch(url, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${provider.token}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      prompt,
-      steps,
-      seed,
-      width: style.size,
-      height: style.size,
-    }),
+    body: JSON.stringify(body),
   });
 
   const text = await response.text();
@@ -173,6 +177,8 @@ const generate = (prompt, seed) =>
     ? generateCloudflare(prompt, seed)
     : generatePollinations(prompt, seed);
 
+const RETRYABLE = new Set([408, 429, 500, 502, 503, 504]);
+
 const withRetry = async (fn, attempts = 3) => {
   let lastError;
   for (let attempt = 1; attempt <= attempts; attempt++) {
@@ -180,6 +186,8 @@ const withRetry = async (fn, attempts = 3) => {
       return await fn();
     } catch (error) {
       lastError = error;
+      // Un 400/401/403 no se arregla reintentando: es el payload o la credencial.
+      if (error.status && !RETRYABLE.has(error.status)) throw error;
       if (attempt === attempts) break;
       const backoff = error.status === 429 ? 15_000 : 4_000 * attempt;
       console.log(`  reintento ${attempt}/${attempts - 1} en ${backoff / 1000}s (${error.message.slice(0, 90)})`);
@@ -238,6 +246,10 @@ for (const shot of storyboard.shots) {
 
     shots[frame] = {
       seed,
+      seedApplied:
+        provider.name === 'cloudflare'
+          ? Boolean(style.providers.cloudflare.supportsSeed)
+          : true,
       prompt,
       promptHash,
       file: `public/${relPath}`,

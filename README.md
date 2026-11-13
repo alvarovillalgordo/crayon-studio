@@ -59,8 +59,10 @@ Tres piezas:
 - `scripts/shots/<slug>.json` — un prompt por plano.
 - `scripts/generate-images.mjs` — genera las imágenes y escribe `src/videos/<slug>/seed-map.json`.
 
-La semilla es determinista: `sha256(styleId:slug:plano)`. Mismo prompt + misma semilla = misma imagen.
-Si cambias un plano, su hash cambia y solo ese plano se regenera; el resto se salta.
+La semilla se deriva de forma determinista: `sha256(styleId:slug:plano)`. **Ojo:** `flux-1-schnell`
+no expone `seed` en su esquema REST (`prompt` y `steps` solamente), así que hoy la semilla queda
+registrada en `seed-map.json` como procedencia pero no altera el resultado. Por eso las imágenes
+se generan una vez, se revisan y se versionan: el render de CI nunca vuelve a llamar al modelo.
 
 `scripts/qa-images.mjs` es la puerta de calidad: rechaza imágenes de menos de 1000 px, lienzos
 vacíos, texto legible (OCR con confianza ≥ 70 %) y marcas de agua. Escribe `qa/ocr-report.json`
