@@ -1,54 +1,15 @@
 {
-  "1": {
-    "src": "lehman/ai/01.jpg",
-    "bg": "#fefdf8"
-  },
-  "2": {
-    "src": "lehman/ai/02.jpg",
-    "bg": "#fffce9"
-  },
-  "3": {
-    "src": "lehman/ai/03.jpg",
-    "bg": "#fdf7da"
-  },
-  "4": {
-    "src": "lehman/ai/04.jpg",
-    "bg": "#fffdf6"
-  },
-  "5": {
-    "src": "lehman/ai/05.jpg",
-    "bg": "#fdce74"
-  },
-  "6": {
-    "src": "lehman/ai/06.jpg",
-    "bg": "#fdd484"
-  },
-  "7": {
-    "src": "lehman/ai/07.jpg",
-    "bg": "#fdf6e4"
-  },
-  "8": {
-    "src": "lehman/ai/08.jpg",
-    "bg": "#fffdf0"
-  },
-  "9": {
-    "src": "lehman/ai/09.jpg",
-    "bg": "#fdefd8"
-  },
-  "10": {
-    "src": "lehman/ai/10.jpg",
-    "bg": "#fef9e6"
-  },
-  "11": {
-    "src": "lehman/ai/11.jpg",
-    "bg": "#fff9e9"
-  },
-  "12": {
-    "src": "lehman/ai/12.jpg",
-    "bg": "#fffceb"
-  },
-  "13": {
-    "src": "lehman/ai/13.jpg",
-    "bg": "#fefaea"
-  }
+  "1": "lehman/ai/01.jpg",
+  "2": "lehman/ai/02.jpg",
+  "3": "lehman/ai/03.jpg",
+  "4": "lehman/ai/04.jpg",
+  "5": "lehman/ai/05.jpg",
+  "6": "lehman/ai/06.jpg",
+  "7": "lehman/ai/07.jpg",
+  "8": "lehman/ai/08.jpg",
+  "9": "lehman/ai/09.jpg",
+  "10": "lehman/ai/10.jpg",
+  "11": "lehman/ai/11.jpg",
+  "12": "lehman/ai/12.jpg",
+  "13": "lehman/ai/13.jpg"
 }

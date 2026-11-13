@@ -10,20 +10,25 @@ import {
 } from 'remotion';
 import {useBoil} from './useBoil';
 
+/**
+ * Fundido vertical: la imagen deja de tener borde y se disuelve en el papel.
+ * Los porcentajes son del alto de la imagen, no del frame.
+ */
+const FADE =
+  'linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%)';
+
 type Props = {
   src: string;
   index: number;
   durationInFrames: number;
-  /** Color del borde de la imagen: evita la costura contra el papel. */
-  background?: string;
 };
 
 /**
  * Plano con Ken Burns suave. Alterna zoom in / zoom out.
- * La imagen va en "contain": las bandas superior e inferior quedan
- * pintadas con el color del propio dibujo.
+ * La imagen va en "contain" y sus bordes superior e inferior se funden
+ * con el papel con una mascara de degradado: ni rectangulo ni costura.
  */
-export const Scene: React.FC<Props> = ({src, index, durationInFrames, background}) => {
+export const Scene: React.FC<Props> = ({src, index, durationInFrames}) => {
   const frame = useCurrentFrame();
   const zoomIn = index % 2 === 0;
   const {fps} = useVideoConfig();
@@ -54,7 +59,6 @@ export const Scene: React.FC<Props> = ({src, index, durationInFrames, background
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: background ?? 'transparent',
         alignItems: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
@@ -65,6 +69,8 @@ export const Scene: React.FC<Props> = ({src, index, durationInFrames, background
         style={{
           width: '112%',
           objectFit: 'contain',
+          WebkitMaskImage: FADE,
+          maskImage: FADE,
           transform: `scale(${scale}) translateX(${drift}px) rotate(${boil.rotate}deg) translate(${boil.x}px, ${boil.y}px)`,
         }}
       />

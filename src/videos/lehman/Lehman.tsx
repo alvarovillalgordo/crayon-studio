@@ -14,17 +14,9 @@ const timeline = timelineJson as unknown as Timeline;
 /**
  * Mapa plano -> imagen generada. Lo escribe scripts/generate-images.mjs.
  * Si un plano no esta generado todavia, cae al placeholder dibujado a mano.
- * Acepta el formato antiguo (string) y el actual ({src, bg}).
+ * Formato: { "1": "lehman/ai/01.jpg", ... }
  */
-type GeneratedImage = string | {src: string; bg?: string};
-
-const generated = imagesJson as unknown as Record<string, GeneratedImage>;
-
-const imageFor = (frame: number) => {
-  const entry = generated[String(frame)];
-  if (typeof entry === 'string') return {src: entry, background: undefined};
-  return {src: entry?.src, background: entry?.bg};
-};
+const generated = imagesJson as unknown as Record<string, string>;
 
 type Title = {text: string; count?: number; countSuffix?: string};
 
@@ -80,16 +72,14 @@ export const Lehman: React.FC = () => {
           1,
           Math.round(scene.end * fps) - from,
         );
-        const image = imageFor(scene.frame);
+        const src = generated[String(scene.frame)];
 
         return (
           <Sequence key={scene.frame} from={from} durationInFrames={durationInFrames}>
             <Scene
               src={
-                image.src ??
-                `lehman/${String(scene.frame).padStart(2, '0')}.png`
+                src ?? `lehman/${String(scene.frame).padStart(2, '0')}.png`
               }
-              background={image.background}
               index={index}
               durationInFrames={durationInFrames}
             />
