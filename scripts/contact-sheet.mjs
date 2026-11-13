@@ -53,7 +53,8 @@ const frames = Array.from({length: 13}, (_, index) => index + 1);
 const tiles = [];
 for (const frame of frames) {
   const pad = String(frame).padStart(2, '0');
-  const generatedPath = generated[String(frame)];
+  const entry = generated[String(frame)];
+  const generatedPath = typeof entry === 'string' ? entry : entry?.src;
   const file = generatedPath
     ? path.join(ROOT, 'public', generatedPath)
     : path.join(ROOT, `public/${slug}/${pad}.png`);

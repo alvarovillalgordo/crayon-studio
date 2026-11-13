@@ -58,6 +58,42 @@ const exists = async (file) => {
   }
 };
 
+/**
+ * Color dominante del borde de la imagen (mediana por canal).
+ * La escena lo usa como fondo para que las bandas superior e inferior
+ * no delaten el rectangulo de la imagen sobre el papel.
+ */
+const edgeColor = async (file) => {
+  const {data, info} = await sharp(file)
+    .resize(24, 24, {fit: 'cover'})
+    .removeAlpha()
+    .raw()
+    .toBuffer({resolveWithObject: true});
+  const {width, height, channels} = info;
+  const samples = [[], [], []];
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const isBorder = x === 0 || y === 0 || x === width - 1 || y === height - 1;
+      if (!isBorder) continue;
+      const index = (y * width + x) * channels;
+      for (let channel = 0; channel < 3; channel++) {
+        samples[channel].push(data[index + channel]);
+      }
+    }
+  }
+
+  const median = (values) => {
+    const sorted = [...values].sort((a, b) => a - b);
+    return sorted[Math.floor(sorted.length / 2)];
+  };
+
+  const hex = samples
+    .map((values) => median(values).toString(16).padStart(2, '0'))
+    .join('');
+  return `#${hex}`;
+};
+
 const readJsonIfExists = async (file) => {
   try {
     return await readJson(file);
@@ -65,6 +101,33 @@ const readJsonIfExists = async (file) => {
     return null;
   }
 };
+
+/* --------------------------------------------------------- solo fondos */
+
+// --bg-only recalcula el color de borde de las imagenes ya generadas.
+// No llama a ningun proveedor ni gasta cupo.
+if (args.get('bg-only') === 'true') {
+  const seedMap = (await readJsonIfExists(seedMapPath)) ?? {shots: {}};
+  const images = {};
+  let done = 0;
+
+  for (const [frame, shot] of Object.entries(seedMap.shots)) {
+    const file = path.join(ROOT, shot.file);
+    if (!(await exists(file))) {
+      console.warn(`[${pad(Number(frame))}] sin archivo, se omite`);
+      continue;
+    }
+    const bg = await edgeColor(file);
+    seedMap.shots[frame] = {...shot, bg};
+    images[frame] = {src: shot.file.replace(/^public\//, ''), bg};
+    done++;
+  }
+
+  await writeFile(seedMapPath, `${JSON.stringify(seedMap, null, 2)}\n`);
+  await writeFile(imagesJsonPath, `${JSON.stringify(images, null, 2)}\n`);
+  console.log(`${done} fondos calculados y escritos en images.json`);
+  process.exit(0);
+}
 
 const resolveProvider = () => {
   const token = process.env.CLOUDFLARE_API_TOKEN;
@@ -230,8 +293,9 @@ for (const shot of storyboard.shots) {
     cached.promptHash === promptHash &&
     (await exists(dest))
   ) {
-    shots[frame] = cached;
-    images[frame] = relPath;
+    const bg = await edgeColor(dest);
+    shots[frame] = {...cached, file: `public/${relPath}`, bg};
+    images[frame] = {src: relPath, bg};
     console.log(`[${pad(frame)}] sin cambios`);
     continue;
   }
@@ -243,6 +307,7 @@ for (const shot of storyboard.shots) {
     const written = await sharp(buffer)
       .jpeg({quality: 92, chromaSubsampling: '4:4:4'})
       .toFile(dest);
+    const bg = await edgeColor(dest);
 
     shots[frame] = {
       seed,
@@ -263,9 +328,10 @@ for (const shot of storyboard.shots) {
       sourceWidth: meta.width,
       sourceHeight: meta.height,
       bytes: written.size,
+      bg,
       generatedAt: new Date().toISOString(),
     };
-    images[frame] = relPath;
+    images[frame] = {src: relPath, bg};
     console.log(
       `[${pad(frame)}] ok ${written.width}x${written.height} ${(written.size / 1024).toFixed(0)} KB`,
     );
@@ -274,7 +340,8 @@ for (const shot of storyboard.shots) {
     console.error(`[${pad(frame)}] FALLO ${error.message.slice(0, 160)}`);
     if (previous.shots[frame]) {
       shots[frame] = previous.shots[frame];
-      images[frame] = previousImages[frame];
+      const src = previousImages[frame]?.src ?? previousImages[frame];
+      if (src) images[frame] = {src, bg: previous.shots[frame].bg};
     }
   }
 }
