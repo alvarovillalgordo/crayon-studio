@@ -4,7 +4,7 @@
   "size": 1024,
   "provider": "cloudflare",
   "model": "@cf/black-forest-labs/flux-1-schnell",
-  "updatedAt": "2026-11-13T11:06:09.257Z",
+  "updatedAt": "2026-11-13T11:08:51.925Z",
   "shots": {
     "1": {
       "seed": 1312460160,
@@ -137,8 +137,8 @@
     "9": {
       "seed": 893295391,
       "seedApplied": false,
-      "prompt": "flat hand-drawn crayon doodle illustration, straight-on front view, warm cream paper background, thick wobbly charcoal ink outlines, flat matte colours, limited palette of dark forest green, mustard yellow, brick red, cream and ink black, naive children's picture-book style, simple rounded shapes, minimal detail, visible paper grain, single centred subject, generous empty space around the subject. a very large red arrow pointing straight down towards the ground, a worried person with empty pockets turned inside out standing next to a house with a cracked roof. no text, no letters, no words, no numbers, no signage, no logos, no watermark, no signature, no frame, no border, no sketchbook, no pencils, no table, no desk, no hand holding paper, not a photograph of paper, not photorealistic, not 3d render",
-      "promptHash": "7f011ada22ac46ec8299de18555b86d2642e25ecb5d871ae3b4f6b0ea27d2c5b",
+      "prompt": "flat hand-drawn crayon doodle illustration, straight-on front view, warm cream paper background, thick wobbly charcoal ink outlines, flat matte colours, limited palette of dark forest green, mustard yellow, brick red, cream and ink black, naive children's picture-book style, simple rounded shapes, minimal detail, visible paper grain, single centred subject, generous empty space around the subject. a simple house sliding down a steep slope towards the bottom of the image, a worried person with empty pockets turned inside out standing at the bottom watching it fall, small dust clouds. no text, no letters, no words, no numbers, no signage, no logos, no watermark, no signature, no frame, no border, no sketchbook, no pencils, no table, no desk, no hand holding paper, not a photograph of paper, not photorealistic, not 3d render",
+      "promptHash": "8718d9fb55c80711411b22eb695123c7cb7e0d33291449bbe860d258b1703e06",
       "file": "public/lehman/ai/09.jpg",
       "provider": "cloudflare",
       "model": "@cf/black-forest-labs/flux-1-schnell",
@@ -146,9 +146,9 @@
       "height": 1024,
       "sourceWidth": 1024,
       "sourceHeight": 1024,
-      "bytes": 151874,
-      "generatedAt": "2026-11-13T11:06:09.257Z",
-      "bg": "#fffef0"
+      "bytes": 198081,
+      "bg": "#fdefd8",
+      "generatedAt": "2026-11-13T11:08:51.924Z"
     },
     "10": {
       "seed": 1981323458,

@@ -31,6 +31,7 @@ npm run still -- Demo out/frame.png --frame=90
 # Imágenes IA + puerta de calidad (OCR)
 npm run images:gen
 npm run images:qa
+npm run images:sheet      # hoja de contactos en out/sheet-<slug>.jpg
 ```
 
 ## Estructura
