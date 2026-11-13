@@ -15,7 +15,7 @@ import {useBoil} from './useBoil';
  * Los porcentajes son del alto de la imagen, no del frame.
  */
 const FADE =
-  'linear-gradient(to bottom, transparent 0%, #000 7%, #000 93%, transparent 100%)';
+  'linear-gradient(to bottom, transparent 0%, #000 14%, #000 94%, transparent 100%)';
 
 type Props = {
   src: string;
